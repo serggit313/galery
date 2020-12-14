@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 if(!empty($_GET['category']))
 {
 	$HTTPR =  $_GET['category'];
@@ -99,6 +99,15 @@ else
 	$is_error404 = true;
 }
 
+function is_user()
+{
+	if(!empty($_SESSIION['user']) || !empty($_COOKIE['user']))
+	{
+		return true;
+	}
+	return false;
+}
+
 ?>
 
 
@@ -115,13 +124,19 @@ else
 			<div class="logo">
 				<img src="img/logo.png" class="logo-img" alt="Logo">
 			</div>
-
-
-
+		<?php if(!is_user()):?>	
+			<div>
+				<p>
+					<a href="reg.php">Регистрация</a>
+				</p>
+				<p>
+					<a href="auth.php">Авторизация</a>
+				</p>
+			</div>
+		<?php else:?>
 			<?php if($is_error404) :?>
 				<h1>Ошибка 404!</h1>
 			<?php else: ?>
-			
 				<div class="menu">
 					<?php if(!empty($menu)):?>
 						<?php foreach($menu as $key=>$value):?>
@@ -134,6 +149,8 @@ else
 						</ul>
 						<?php endforeach;?>
 					<?php endif;?>
+					<a href="uploads.php">Загрузить картинки</a>
+					<a href="exit.php">Выйти</a>
 				</div>
 
 			<!-- SuperBox -->
@@ -144,9 +161,10 @@ else
 				<div class="superbox-float"></div>
 			</div>
 			<!-- /SuperBox -->
-			
+		
 			<div style="height:300px;"></div>
 			<?php endif;?>
+		<?php endif;?>
 		</div>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<script src="js/superbox.js"></script>

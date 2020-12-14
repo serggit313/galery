@@ -52,15 +52,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     }
 }
 
-
-echo '<pre>';
-print_r($_FILES);
-echo '</pre>';
-
-echo '<pre>';
-print_r($_POST);
-echo '</pre>';
-
 ?>
 
 
@@ -99,6 +90,7 @@ echo '</pre>';
             </fieldset>
 
             <button type="submit">Отправить</button>
+            <a href="index.php">Вернуться назад</a>
         </form>
     </div>
 </body>
